@@ -2,7 +2,11 @@
 
 <template>
 
-    <h1>{{message}}</h1>
+    <section>
+
+        <h1>{{TFL_APPLICATION_ID}} {{TFL_APPLICATION_KEY}}</h1>
+
+    </section>
 
 </template>
 
@@ -14,7 +18,8 @@ export default {
 
         return {
 
-            message: "Hello, world!"
+            TFL_APPLICATION_ID: '{%TFL_APPLICATION_ID%}',
+            TFL_APPLICATION_KEY: '{%TFL_APPLICATION_KEY%}'
 
         };
 

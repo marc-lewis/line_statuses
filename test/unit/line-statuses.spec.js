@@ -9,7 +9,7 @@ describe('line-statuses', () => {
     // Inspect the raw component options
     it('has a created hook', () => {
 
-        expect(typeof lineStatuses.created).toBe('function');
+        expect(typeof lineStatuses.data).toBe('function');
 
     });
 
@@ -20,16 +20,8 @@ describe('line-statuses', () => {
         expect(typeof lineStatuses.data).toBe('function');
         const defaultData = lineStatuses.data();
 
-        expect(defaultData.message).toBe('Hello, world!');
-
-    });
-
-    // Inspect the component instance on mount
-    it('correctly sets the message when created', () => {
-
-        const vm = new Vue(lineStatuses).$mount();
-
-        expect(vm.message).toBe('Hello, world!');
+        expect(defaultData.TFL_APPLICATION_ID).toBe('{%TFL_APPLICATION_ID%}');
+        expect(defaultData.TFL_APPLICATION_KEY).toBe('{%TFL_APPLICATION_KEY%}');
 
     });
 
@@ -39,7 +31,7 @@ describe('line-statuses', () => {
         const Constructor = Vue.extend(lineStatuses);
         const vm = new Constructor().$mount();
 
-        expect(vm.$el.textContent).toBe('Hello, world!');
+        expect(vm.$el.textContent).toBe('{%TFL_APPLICATION_ID%} {%TFL_APPLICATION_KEY%}');
 
     });
 

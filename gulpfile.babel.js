@@ -8,6 +8,9 @@ import log from 'gulplog';
 import sourcemaps from 'gulp-sourcemaps';
 import assign from 'lodash.assign';
 import vueify from 'vueify';
+import replace from 'gulp-replace';
+
+require('dotenv').config()
 
 
 /**
@@ -71,6 +74,19 @@ gulp.task('watch:js', () => {
             .on('error', log.error.bind(log, 'Browserify Error'))
             .pipe(source('app.bundle.js'))
             .pipe(buffer())
+            .pipe(replace(/({%TFL_APPLICATION_ID%}|{%TFL_APPLICATION_KEY%})/g, function (match) {
+
+                if (match === '{%TFL_APPLICATION_KEY%}') {
+
+                    return process.env.TFL_APPLICATION_KEY;
+
+                } else if (match === '{%TFL_APPLICATION_ID%}') {
+
+                    return process.env.TFL_APPLICATION_ID
+
+                }
+                
+            }))
             .pipe(sourcemaps.init({loadmaps:true}))
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest('./dist/assets/scripts'));
