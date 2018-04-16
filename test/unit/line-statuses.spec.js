@@ -1,5 +1,11 @@
 // Import Vue and the component being tested
 import Vue from 'vue';
+import axios from 'axios';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import MockData from '../mocks/tlf_api_response.js';
+
+
 import lineStatuses from '../../src/components/line-statuses/line-statuses.vue';
 
 // Here are some Jasmine 2.0 tests, though you can
@@ -25,13 +31,33 @@ describe('line-statuses', () => {
 
     });
 
-    // Mount an instance and inspect the render output
-    it('renders the correct message', () => {
+    it('GETS line statuses from https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status', (done) => {
 
-        const Constructor = Vue.extend(lineStatuses);
-        const vm = new Constructor().$mount();
+        moxios.install(); 
 
-        expect(vm.$el.textContent).toBe('{%TFL_APPLICATION_ID%} {%TFL_APPLICATION_KEY%}');
+        moxios.stubRequest(/.*api\.tfl\.gov\.uk.*/, {
+
+            status: 200,
+            response: {
+
+                data: MockData
+
+            }
+
+        });
+        
+        const VM = new Vue(lineStatuses);
+
+        moxios.wait(() => {
+
+            Vue.nextTick(() => {
+
+                expect(VM.$data.lineStatuses.data.length).toBe(14);
+                done();
+
+            });
+
+        });
 
     });
 

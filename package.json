@@ -16,6 +16,7 @@
     "babelify": "^8.0.0",
     "browserify": "^16.2.0",
     "dotenv": "^5.0.1",
+    "expect": "^22.4.3",
     "express": "^4.16.3",
     "gulp": "git://github.com/gulpjs/gulp.git#6d71a658c61edb3090221579d8f97dbe086ba2ed",
     "gulp-autoprefixer": "^5.0.0",
@@ -32,13 +33,20 @@
     "karma-browserify": "^5.2.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.4",
     "lodash.assign": "^4.2.0",
+    "moxios": "^0.4.0",
     "phantomjs": "^2.1.7",
+    "sinon": "^4.5.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "vue": "^2.5.16",
+    "vue-resource-mock": "0.0.9",
+    "vue-test-utils": "^1.0.0-beta.11",
     "vueify": "^9.4.1",
     "watchify": "^3.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue-axios": "^2.1.1"
   }
 }
