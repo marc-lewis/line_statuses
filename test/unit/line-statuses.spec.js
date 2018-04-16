@@ -8,8 +8,7 @@ import MockData from '../mocks/tlf_api_response.js';
 
 import lineStatuses from '../../src/components/line-statuses/line-statuses.vue';
 
-// Here are some Jasmine 2.0 tests, though you can
-// use any test runner / assertion library combo you prefer
+// Here are some Jasmine 2.0 tests
 describe('line-statuses', () => {
 
     // Inspect the raw component options
@@ -31,7 +30,7 @@ describe('line-statuses', () => {
 
     });
 
-    it('GETS line statuses from https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status', (done) => {
+    it('GETS line statuses from http://api.tfl.gov.uk/Line/Mode/Tube/Status', (done) => {
 
         moxios.install(); 
 
@@ -60,5 +59,7 @@ describe('line-statuses', () => {
         });
 
     });
+
+    // it displays the children when it has the array data
 
 });

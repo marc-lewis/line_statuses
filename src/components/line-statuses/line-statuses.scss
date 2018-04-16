@@ -1,3 +1,57 @@
-h1 {
-    color: blue;
+.line_statuses {
+    padding: 2px 1px;
+    background: rgb(238, 238, 238); // from .heading-dropdown .date-dropdown-placeholder on https://tfl.gov.uk/tube-dlr-overground/status/
+}
+
+@media (min-width: 768px) {
+
+    .line_statuses {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        li {
+            flex-basis: calc(50% - 4px);
+
+            &:nth-child(2n + 1) {
+                margin-right: 4px;
+            }
+
+            &:nth-child(2n + 2) {
+                margin-left: 4px;
+            }
+        }
+    }
+
+}
+
+@media (min-width: 1280px) {
+
+    .line_statuses {
+
+        li {
+            flex-basis: calc(33% - 4px);
+
+            &:nth-child(2n + 1) {
+                margin-right: 0;
+            }
+
+            &:nth-child(2n + 2) {
+                margin-left: 0;
+            }
+
+            &:nth-child(3n + 1) {
+                margin-right: 4px;
+            }
+
+            &:nth-child(3n + 2) {
+                margin: 0 4px;
+            }
+
+            &:nth-child(3n + 3) {
+                margin-left: 4px;
+            }
+        }
+    }
+
 }

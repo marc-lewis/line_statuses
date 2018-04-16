@@ -2,17 +2,28 @@
 
 <template>
 
-    <section>
+    <ul class="line_statuses">
 
-        <h1>{{lineStatuses}}</h1>
+        <li v-for="(line, index) in lineStatuses"
+            :key="line.id">
 
-    </section>
+            <line-status
+                :id="line.id"
+                :name="line.name"
+                :status="line.lineStatuses[0].statusSeverityDescription"
+                :index="index">
+            </line-status>
+
+        </li>
+
+    </ul>
 
 </template>
 
 <script>
 
 import axios from 'axios';
+import LineStatus from '../line-status/line-status.vue';
 
 export default {
 
@@ -28,6 +39,12 @@ export default {
 
     },
 
+    components: {
+
+        LineStatus
+
+    },
+
     methods: {
 
         /**
@@ -37,7 +54,7 @@ export default {
          **/
         getLineStatuses () {
 
-            axios.get('https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/status',{
+            axios.get('https://api.tfl.gov.uk/line/mode/tube,overground,dlr,tflrail/Status',{
                 params: {
 
                     app_id: this.TFL_APPLICATION_ID,
@@ -48,10 +65,8 @@ export default {
                 .then((response) => {
 
                     this.lineStatuses = response.data;
-                    
-                });
 
-            
+                });
 
         }
 

@@ -9,6 +9,8 @@ import sourcemaps from 'gulp-sourcemaps';
 import assign from 'lodash.assign';
 import vueify from 'vueify';
 import replace from 'gulp-replace';
+import sass from 'gulp-sass';
+import prefixer from 'gulp-autoprefixer';
 
 require('dotenv').config()
 
@@ -21,6 +23,16 @@ gulp.task('move:vendors', () => {
     // move vue into local/assets/scripts/vue.js
     return gulp.src('./node_modules/vue/dist/*.js')
         .pipe(gulp.dest('./dist/assets/scripts/vendors'));
+
+});
+
+/**
+ * Move assets into dist
+ */
+gulp.task('move:assets', () => {
+
+    return gulp.src('./src/assets/**/*')
+        .pipe(gulp.dest('./dist/assets/'));
 
 });
 
@@ -101,6 +113,11 @@ gulp.task('watch:js', () => {
     
 });
 
+gulp.task('build:sass', () => gulp.src('./src/styles/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(prefixer())
+    .pipe(gulp.dest('./dist/assets/styles')));
+
 /**
  * Serve the dist folder for dev
  */
@@ -117,6 +134,8 @@ gulp.task('serve:dist', () => {
 gulp.task('default', gulp.parallel(
     'move:vendors',
     'move:index',
+    'move:assets',
+    'build:sass',
     'watch:js',
     'serve:dist'
 ));
