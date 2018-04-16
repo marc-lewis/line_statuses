@@ -44,4 +44,5 @@ of all tube lines." It seems pernickety but I'd ask, anyway.
 
 ## Takeouts
 
-I think I did ok, it looks decent, it's tested ok, and it works on all the modern browsers. I have, however, missed two things that I'll be honest about: eslint and stylelint. These are taken care of in my IDE so I forget to add them to the build process for solo projects like this, but they should also be run with a precommit hook and during browserify build for any deployments to make sure everyone is aligned. It feels too cheeky to add it in now that the site is functional and tested.
+I think I did ok - I spent around a working day on it. It looks decent, it's tested ok, and it works on all the modern browsers. I have, however, missed two things that I'll be honest about: eslint and stylelint. These are taken care of in my IDE so I forget to add them to the build process for solo projects like this, but they should also be run with a precommit hook and during browserify build for any deployments to make sure everyone is aligned. It feels too cheeky to add it in now that the site is functional and tested.
+There's no proper dist version, either. Ideally, I'd use docker and minify/uglify/etc for release.
