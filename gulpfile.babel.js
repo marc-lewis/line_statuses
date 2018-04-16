@@ -131,11 +131,13 @@ gulp.task('serve:dist', () => {
 /**
  * The default gulp tasks
  */
-gulp.task('default', gulp.parallel(
-    'move:vendors',
-    'move:index',
-    'move:assets',
-    'build:sass',
-    'watch:js',
-    'serve:dist'
-));
+gulp.task('default', gulp.series([
+    gulp.parallel(
+        'move:vendors',
+        'move:index',
+        'move:assets',
+        'build:sass',
+        'watch:js',
+    ),
+    'serve:dist'])
+);

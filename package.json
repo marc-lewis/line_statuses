@@ -2,7 +2,7 @@
   "name": "tfl_dev_test",
   "version": "1.0.0",
   "description": "// make a vue component that's just 'hello world'\r // test it to make sure it says 'hello world'\r // git push",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
     "test": "karma start",
     "dev": "gulp"
